@@ -242,3 +242,7 @@ app_license = "mit"
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+# Add your custom Sales Order JS
+doctype_js = {
+    "Sales Order": "public/js/sales_order_custom.js"
+}
