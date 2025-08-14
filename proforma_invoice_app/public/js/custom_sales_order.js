@@ -13,8 +13,8 @@ frappe.ui.form.on('Sales Order', {
     },
 
     make_proforma_invoice: function(frm) {
-        frappe.model.open_mapped_doc({
-            method: "proforma_invoice_app.doctype.sales_order.sales_order.make_proforma_invoice",
+        frappe.model.open_mapped_doc({  
+           method: "proforma_invoice_app.overrides.sales_order.make_proforma_invoice",
             frm: frm
         });
     }
