@@ -1,3 +1,6 @@
+import frappe
+from frappe import _
+
 @frappe.whitelist()
 def make_proforma_invoice(source_name, target_doc=None):
     from frappe.model.mapper import get_mapped_doc
