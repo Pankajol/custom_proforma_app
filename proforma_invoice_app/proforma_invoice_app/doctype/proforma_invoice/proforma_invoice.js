@@ -1,11 +1,7 @@
 // Copyright (c) 2025, aits and contributors
 // For license information, please see license.txt
 
-// frappe.ui.form.on("Proforma Invoice", {
-// 	refresh(frm) {
-
-// 	},
-// });
+// frappe-dependency: proforma_invoice_app/public/js/proforma_invoice_app.bundle.js
 
 cur_frm.cscript.tax_table = "Sales Taxes and Charges";
 
