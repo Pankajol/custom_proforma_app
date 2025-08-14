@@ -59,7 +59,7 @@ class ProformaInvoice(SellingController):
         from erpnext.accounts.doctype.sales_taxes_and_charges.sales_taxes_and_charges import (
             SalesTaxesandCharges,
         )
-        from erpnext.selling.doctype.proforma_invoice_item.proforma_invoice_item import SalesOrderItem
+        from proforma_invoice_app.doctype.proforma_invoice_item.proforma_invoice_item import SalesOrderItem
         from erpnext.selling.doctype.sales_team.sales_team import SalesTeam
         from erpnext.stock.doctype.packed_item.packed_item import PackedItem
 

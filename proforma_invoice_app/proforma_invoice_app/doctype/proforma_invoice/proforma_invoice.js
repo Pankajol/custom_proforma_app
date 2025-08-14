@@ -120,7 +120,7 @@ frappe.ui.form.on("Proforma Invoice", {
 
             if (frm.doc.docstatus === 0) {
                 frappe.call({
-                    method: "erpnext.selling.doctype.proforma_invoice.proforma_invoice.get_stock_reservation_status",
+                    method: "proforma_invoice_app.doctype.proforma_invoice.proforma_invoice.get_stock_reservation_status",
                     callback: function (r) {
                         if (!r.message) {
                             frm.set_value("reserve_stock", 0);
@@ -588,7 +588,7 @@ frappe.ui.form.on("Proforma Invoice Item", {
     }
 });
 
-erpnext.selling.ProformaInvoiceController = class ProformaInvoiceController extends erpnext.selling.SellingController{
+proforma_invoice_app.ProformaInvoiceController = class ProformaInvoiceController extends proforma_invoice_app.SellingController{
     onload(doc, dt, dn) {
         super.onload(doc, dt, dn);
     }
@@ -800,7 +800,7 @@ erpnext.selling.ProformaInvoiceController = class ProformaInvoiceController exte
                 __("Quotation"),
                 function () {
                     let d = erpnext.utils.map_current_doc({
-                        method: "erpnext.selling.doctype.quotation.quotation.make_proforma_invoice",
+                        method: "proforma_invoice_app.doctype.quotation.quotation.make_proforma_invoice",
                         source_doctype: "Quotation",
                         target: me.frm,
                         setters: [
@@ -836,7 +836,7 @@ erpnext.selling.ProformaInvoiceController = class ProformaInvoiceController exte
 
     create_pick_list() {
         frappe.model.open_mapped_doc({
-            method: "erpnext.selling.doctype.proforma_invoice.proforma_invoice.create_pick_list",
+            method: "proforma_invoice_app.doctype.proforma_invoice.proforma_invoice.create_pick_list",
             frm: this.frm,
         });
     }
@@ -844,7 +844,7 @@ erpnext.selling.ProformaInvoiceController = class ProformaInvoiceController exte
     make_work_order() {
         var me = this;
         me.frm.call({
-            method: "erpnext.selling.doctype.proforma_invoice.proforma_invoice.get_work_order_items",
+            method: "proforma_invoice_app.doctype.proforma_invoice.proforma_invoice.get_work_order_items",
             args: {
                 proforma_invoice: this.frm.docname,
             },
@@ -958,7 +958,7 @@ erpnext.selling.ProformaInvoiceController = class ProformaInvoiceController exte
 
     make_material_request() {
         frappe.model.open_mapped_doc({
-            method: "erpnext.selling.doctype.proforma_invoice.proforma_invoice.make_material_request",
+            method: "proforma_invoice_app.doctype.proforma_invoice.proforma_invoice.make_material_request",
             frm: this.frm,
         });
     }
@@ -977,7 +977,7 @@ erpnext.selling.ProformaInvoiceController = class ProformaInvoiceController exte
     make_raw_material_request() {
         var me = this;
         this.frm.call({
-            method: "erpnext.selling.doctype.proforma_invoice.proforma_invoice.get_work_order_items",
+            method: "proforma_invoice_app.doctype.proforma_invoice.proforma_invoice.get_work_order_items",
             args: {
                 proforma_invoice: this.frm.docname,
                 for_raw_material_request: 1,
@@ -1054,7 +1054,7 @@ erpnext.selling.ProformaInvoiceController = class ProformaInvoiceController exte
             primary_action: function () {
                 var data = d.get_values();
                 me.frm.call({
-                    method: "erpnext.selling.doctype.proforma_invoice.proforma_invoice.make_raw_material_request",
+                    method: "proforma_invoice_app.doctype.proforma_invoice.proforma_invoice.make_raw_material_request",
                     args: {
                         items: data,
                         company: me.frm.doc.company,
@@ -1143,7 +1143,7 @@ erpnext.selling.ProformaInvoiceController = class ProformaInvoiceController exte
 
     make_delivery_note(delivery_dates, for_reserved_stock = false) {
         frappe.model.open_mapped_doc({
-            method: "erpnext.selling.doctype.proforma_invoice.proforma_invoice.make_delivery_note",
+            method: "proforma_invoice_app.doctype.proforma_invoice.proforma_invoice.make_delivery_note",
             frm: this.frm,
             args: {
                 delivery_dates,
@@ -1156,35 +1156,35 @@ erpnext.selling.ProformaInvoiceController = class ProformaInvoiceController exte
 
     make_sales_invoice() {
         frappe.model.open_mapped_doc({
-            method: "erpnext.selling.doctype.proforma_invoice.proforma_invoice.make_sales_invoice",
+            method: "proforma_invoice_app.doctype.proforma_invoice.proforma_invoice.make_sales_invoice",
             frm: this.frm,
         });
     }
 
     make_maintenance_schedule() {
         frappe.model.open_mapped_doc({
-            method: "erpnext.selling.doctype.proforma_invoice.proforma_invoice.make_maintenance_schedule",
+            method: "proforma_invoice_app.doctype.proforma_invoice.proforma_invoice.make_maintenance_schedule",
             frm: this.frm,
         });
     }
 
     make_project() {
         frappe.model.open_mapped_doc({
-            method: "erpnext.selling.doctype.proforma_invoice.proforma_invoice.make_project",
+            method: "proforma_invoice_app.doctype.proforma_invoice.proforma_invoice.make_project",
             frm: this.frm,
         });
     }
 
     make_inter_company_order() {
         frappe.model.open_mapped_doc({
-            method: "erpnext.selling.doctype.proforma_invoice.proforma_invoice.make_inter_company_purchase_order",
+            method: "proforma_invoice_app.doctype.proforma_invoice.proforma_invoice.make_inter_company_purchase_order",
             frm: this.frm,
         });
     }
 
     make_maintenance_visit() {
         frappe.model.open_mapped_doc({
-            method: "erpnext.selling.doctype.proforma_invoice.proforma_invoice.make_maintenance_visit",
+            method: "proforma_invoice_app.doctype.proforma_invoice.proforma_invoice.make_maintenance_visit",
             frm: this.frm,
         });
     }
@@ -1274,7 +1274,7 @@ erpnext.selling.ProformaInvoiceController = class ProformaInvoiceController exte
                     ? "make_purchase_order_for_default_supplier"
                     : "make_purchase_order";
                 return frappe.call({
-                    method: "erpnext.selling.doctype.proforma_invoice.proforma_invoice." + method,
+                    method: "proforma_invoice_app.doctype.proforma_invoice.proforma_invoice." + method,
                     freeze_message: __("Creating Purchase Order ..."),
                     args: {
                         source_name: me.frm.doc.name,
@@ -1393,7 +1393,7 @@ erpnext.selling.ProformaInvoiceController = class ProformaInvoiceController exte
         var me = this;
         frappe.ui.form.is_saving = true;
         frappe.call({
-            method: "erpnext.selling.doctype.proforma_invoice.proforma_invoice.update_status",
+            method: "proforma_invoice_app.doctype.proforma_invoice.proforma_invoice.update_status",
             args: { status: status, name: doc.name },
             callback: function (r) {
                 me.frm.reload_doc();
@@ -1405,4 +1405,4 @@ erpnext.selling.ProformaInvoiceController = class ProformaInvoiceController exte
     }
 };
 
-extend_cscript(cur_frm.cscript, new erpnext.selling.ProformaInvoiceController({ frm: cur_frm }));
+extend_cscript(cur_frm.cscript, new proforma_invoice_app.ProformaInvoiceController({ frm: cur_frm }));
