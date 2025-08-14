@@ -1,3 +1,4 @@
+
 frappe.ui.form.on('Sales Order', {
     refresh: function(frm) {
         // Add "Proforma Invoice" button if user has permission

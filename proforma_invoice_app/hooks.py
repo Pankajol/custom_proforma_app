@@ -244,5 +244,11 @@ app_license = "mit"
 
 # Add your custom Sales Order JS
 doctype_js = {
-    "Sales Order": "public/js/custom_sales_order.js"
+    "Sales Order": "public/js/custom_sales_order.js",
+     "Proforma Invoice": "public/js/proforma_invoice.js"
+}
+
+override_whitelisted_methods = {
+    "erpnext.selling.doctype.sales_order.sales_order.make_proforma_invoice":
+    "proforma_invoice_app.proforma_invoice_app.doctype.proforma_invoice.proforma_invoice.make_proforma_invoice"
 }
