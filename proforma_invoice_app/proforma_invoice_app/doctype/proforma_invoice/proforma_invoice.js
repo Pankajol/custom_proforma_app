@@ -588,6 +588,8 @@ frappe.ui.form.on("Proforma Invoice Item", {
     }
 });
 
+// Wrap the controller definition and extension in a check
+if (typeof proforma_invoice_app !== 'undefined') {
 proforma_invoice_app.ProformaInvoiceController = class ProformaInvoiceController extends proforma_invoice_app.SellingController{
     onload(doc, dt, dn) {
         super.onload(doc, dt, dn);
@@ -1404,5 +1406,10 @@ proforma_invoice_app.ProformaInvoiceController = class ProformaInvoiceController
         });
     }
 };
+ extend_cscript(cur_frm.cscript, new proforma_invoice_app.ProformaInvoiceController({ frm: cur_frm }));
+} else {
+    // This part is optional but good for debugging
+    console.warn("proforma_invoice_app is not defined. The controller will not be loaded.");
+}
 
 extend_cscript(cur_frm.cscript, new proforma_invoice_app.ProformaInvoiceController({ frm: cur_frm }));
