@@ -244,5 +244,5 @@ app_license = "mit"
 
 # Add your custom Sales Order JS
 doctype_js = {
-    "Sales Order": "public/js/sales_order_custom.js"
+    "Sales Order": "public/js/custom_sales_order.js"
 }
